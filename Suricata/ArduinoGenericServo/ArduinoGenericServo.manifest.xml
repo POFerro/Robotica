@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<Manifest
+    xmlns:arduino="http://mrdsarduino.codeplex.com/2012/01/arduino.html"
+	xmlns:arduinogenericservo="http://schemas.pferro/2013/03/arduinogenericservo.html"
+	xmlns:this="urn:uuid:297CA3F7-B5F1-43C0-BDBC-A6801D71E68C"
+	xmlns="http://schemas.microsoft.com/xw/2004/10/manifest.html"
+    xmlns:dssp="http://schemas.microsoft.com/xw/2004/10/dssp.html"
+    >
+    <CreateServiceList>
+        <ServiceRecordType>
+            <dssp:Contract>http://schemas.pferro/2013/03/arduinogenericservo.html</dssp:Contract>
+			<dssp:PartnerList>
+				<dssp:Partner>
+					<dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+					<dssp:PartnerList />
+					<dssp:Name>arduinogenericservo:ArduinoService</dssp:Name>
+					<dssp:ServiceName>this:ArduinoService</dssp:ServiceName>
+				</dssp:Partner>
+			</dssp:PartnerList>
+			<Name>this:arduinogenericservo</Name>
+		</ServiceRecordType>
+		<ServiceRecordType>
+			<dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+			<dssp:PartnerList>
+				<dssp:Partner>
+					<dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+					<dssp:Service>arduinoservice.config.xml</dssp:Service>
+					<dssp:PartnerList />
+					<dssp:Name>dssp:StateService</dssp:Name>
+				</dssp:Partner>
+			</dssp:PartnerList>
+			<Name>this:ArduinoService</Name>
+		</ServiceRecordType>
+	</CreateServiceList>
+</Manifest>

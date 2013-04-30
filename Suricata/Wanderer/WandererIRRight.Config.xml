@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArduinoGenericDistanceSensorState xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html">
+	<SensorModel>IR_Sharp_GP2Y0A21YK0F</SensorModel>
+	<HardwareIdentifier>16</HardwareIdentifier>
+</ArduinoGenericDistanceSensorState>

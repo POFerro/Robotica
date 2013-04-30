@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--This file was created with the Microsoft Visual Programming Language.-->
+<Manifest 
+	xmlns:arduino="http://mrdsarduino.codeplex.com/2012/01/arduino.html" 
+	xmlns:arduinogenericdrive="http://schemas.pferro/2013/03/arduinogenericdrive.html" 
+	xmlns:dssp="http://schemas.microsoft.com/xw/2004/10/dssp.html" 
+	xmlns:this="urn:uuid:063738a2-28f4-46e7-a9e6-24c09ea9b27d" 
+	xmlns="http://schemas.microsoft.com/xw/2004/10/manifest.html">
+  <CreateServiceList>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/2013/03/arduinogenericdrive.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinogenericdrive:ArduinoService</dssp:Name>
+          <dssp:ServiceName>this:ArduinoService</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:arduinogenericdrive</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+		<dssp:PartnerList>
+			<dssp:Partner>
+				<dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+				<dssp:Service>arduinoservice.config.xml</dssp:Service>
+				<dssp:PartnerList />
+				<dssp:Name>dssp:StateService</dssp:Name>
+			</dssp:Partner>
+		</dssp:PartnerList>
+		<Name>this:ArduinoService</Name>
+    </ServiceRecordType>
+  </CreateServiceList>
+</Manifest>

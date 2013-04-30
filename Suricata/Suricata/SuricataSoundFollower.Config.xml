@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SoundFollowerState xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.pferro/2013/04/soundfollower.html">
+	<MinConfidenceLevel>0.8</MinConfidenceLevel>
+	<MaxLateralSpeed>0.7</MaxLateralSpeed>
+</SoundFollowerState>

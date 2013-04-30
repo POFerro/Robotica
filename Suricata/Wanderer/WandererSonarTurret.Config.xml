@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArduinoSonarTurretState xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:d="http://schemas.microsoft.com/xw/2004/10/dssp.html" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns="http://schemas.pferro/2013/03/arduinosonarturret.html">
+  <AngularRange>180</AngularRange>
+  <AngularResolution>1</AngularResolution>
+</ArduinoSonarTurretState>

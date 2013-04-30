@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArduinoGenericDriveState xmlns:s="http://www.w3.org/2003/05/soap-envelope" xmlns:d="http://schemas.microsoft.com/xw/2004/10/dssp.html" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns="http://schemas.pferro/2013/03/arduinogenericdrive.html">
+	<DistanceBetweenWheels xmlns="http://schemas.microsoft.com/robotics/2006/05/drive.html">0</DistanceBetweenWheels>
+
+	<MotorShieldType>Keyes</MotorShieldType>
+
+	<RightForwardPin>D7</RightForwardPin>
+	<RightBackwardPin>D12</RightBackwardPin>
+	<RightEnginePWMPin>D6</RightEnginePWMPin>
+	<LeftForwardPin>D4</LeftForwardPin>
+	<LeftBackwardPin>D2</LeftBackwardPin>
+	<LeftEnginePWMPin>D5</LeftEnginePWMPin>
+	
+	<MillisecondsPerAngle>8</MillisecondsPerAngle>
+
+	<LeftWheel xmlns="http://schemas.microsoft.com/robotics/2006/05/drive.html">
+		<MotorState xmlns="http://schemas.microsoft.com/robotics/2006/05/motor.html">
+			<HardwareIdentifier>0</HardwareIdentifier>
+			<PowerScalingFactor>255</PowerScalingFactor>
+			<ReversePolarity>false</ReversePolarity>
+		</MotorState>
+		<Radius xmlns="http://schemas.microsoft.com/robotics/2006/05/motor.html">0</Radius>
+		<GearRatio xmlns="http://schemas.microsoft.com/robotics/2006/05/motor.html">0</GearRatio>
+		<EncoderState xmlns="http://schemas.microsoft.com/robotics/2006/05/motor.html">
+			<TicksPerRevolution xmlns="http://schemas.microsoft.com/robotics/2006/05/encoder.html">0</TicksPerRevolution>
+			<HardwareIdentifier xmlns="http://schemas.microsoft.com/robotics/2006/05/encoder.html">0</HardwareIdentifier>
+		</EncoderState>
+	</LeftWheel>
+	<RightWheel xmlns="http://schemas.microsoft.com/robotics/2006/05/drive.html">
+		<MotorState xmlns="http://schemas.microsoft.com/robotics/2006/05/motor.html">
+			<HardwareIdentifier>0</HardwareIdentifier>
+			<PowerScalingFactor>255</PowerScalingFactor>
+			<ReversePolarity>false</ReversePolarity>
+		</MotorState>
+		<Radius xmlns="http://schemas.microsoft.com/robotics/2006/05/motor.html">0</Radius>
+		<GearRatio xmlns="http://schemas.microsoft.com/robotics/2006/05/motor.html">0</GearRatio>
+		<EncoderState xmlns="http://schemas.microsoft.com/robotics/2006/05/motor.html">
+			<TicksPerRevolution xmlns="http://schemas.microsoft.com/robotics/2006/05/encoder.html">0</TicksPerRevolution>
+			<HardwareIdentifier xmlns="http://schemas.microsoft.com/robotics/2006/05/encoder.html">0</HardwareIdentifier>
+		</EncoderState>
+	</RightWheel>
+
+</ArduinoGenericDriveState>

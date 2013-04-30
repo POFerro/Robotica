@@ -1,0 +1,412 @@
+<?xml version="1.0"?>
+<!--This file was created with the Microsoft Visual Programming Language.-->
+<Manifest xmlns:arduinogenericdistancesensor="http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html" xmlns:dssp="http://schemas.microsoft.com/xw/2004/10/dssp.html" xmlns:user="http://schemas.microsoft.com/robotics/2011/08/kinect.user.html" xmlns:arduinogenericservo="http://schemas.pferro/2013/03/arduinogenericservo.html" xmlns:suricatadashboard="http://schemas.pferro/2013/04/suricatadashboard.html" xmlns:soundfollower="http://schemas.pferro/2013/04/soundfollower.html" xmlns:suricatairarray="http://schemas.pferro/robotics/2013/04/suricatairarray.html" xmlns:suricata="http://schemas.pferro/2013/04/suricata.html" xmlns:skeletonfollower="http://schemas.pferro/2013/04/skeletonfollower.html" xmlns:gamecontroller="http://schemas.pferro/robotics/2013/04/gamecontroller.html" xmlns:arduinogenericdrive="http://schemas.pferro/2013/03/arduinogenericdrive.html" xmlns:suricatasonararray="http://schemas.pferro/robotics/2013/04/suricatasonararray.html" xmlns:arduino="http://mrdsarduino.codeplex.com/2012/01/arduino.html" xmlns:this="urn:uuid:545cca03-b0e4-49c1-867c-10e04c484679" xmlns="http://schemas.microsoft.com/xw/2004/10/manifest.html">
+  <CreateServiceList>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/2013/04/suricata.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/04/skeletonfollower.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>suricata:SkeletonFollowerService</dssp:Name>
+          <dssp:ServiceName>this:SkeletonFollower</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/04/soundfollower.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>suricata:SoundFollowerService</dssp:Name>
+          <dssp:ServiceName>this:SoundFollower</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/03/arduinogenericservo.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>suricata:KinectServo</dssp:Name>
+          <dssp:ServiceName>this:SuricataKinectServo</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:suricata</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:Service>suricataarduino.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:SuricataArduino</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/2013/03/arduinogenericdrive.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/03/arduinogenericdrive.html</dssp:Contract>
+          <dssp:Service>suricatadrive.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinogenericdrive:ArduinoService</dssp:Name>
+          <dssp:ServiceName>this:SuricataArduino</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:SuricataDrive</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html</dssp:Contract>
+          <dssp:Service>suricatairleft.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinogenericdistancesensor:ArduinoService</dssp:Name>
+          <dssp:ServiceName>this:SuricataArduino</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:SuricataIRLeft</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html</dssp:Contract>
+          <dssp:Service>suricatairright.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinogenericdistancesensor:ArduinoService</dssp:Name>
+          <dssp:ServiceName>this:SuricataArduino</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:SuricataIRRight</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html</dssp:Contract>
+          <dssp:Service>suricataircenter.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinogenericdistancesensor:ArduinoService</dssp:Name>
+          <dssp:ServiceName>this:SuricataArduino</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:SuricataIRCenter</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html</dssp:Contract>
+          <dssp:Service>suricatasonarleft.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinogenericdistancesensor:ArduinoService</dssp:Name>
+          <dssp:ServiceName>this:SuricataArduino</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:SuricataSonarLeft</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html</dssp:Contract>
+          <dssp:Service>suricatasonarright.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinogenericdistancesensor:ArduinoService</dssp:Name>
+          <dssp:ServiceName>this:SuricataArduino</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:SuricataSonarRight</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/2013/04/suricatadashboard.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>suricatadashboard:ArduinoService</dssp:Name>
+          <dssp:ServiceName>this:SuricataArduino</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/04/suricata.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>suricatadashboard:SuricataService</dssp:Name>
+          <dssp:ServiceName>this:suricata</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2011/08/kinect.user.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>suricatadashboard:Kinect</dssp:Name>
+          <dssp:ServiceName>this:Kinect</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/04/skeletonfollower.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>suricatadashboard:SkeletonFollowerService</dssp:Name>
+          <dssp:ServiceName>this:SkeletonFollower</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/04/soundfollower.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>suricatadashboard:SoundFollowerService</dssp:Name>
+          <dssp:ServiceName>this:SoundFollower</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/05/drive.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>suricatadashboard:DriveDifferentialTwoWheel</dssp:Name>
+          <dssp:ServiceName>this:SuricataDrive</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/06/analogsensor.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>suricatadashboard:SonarLeft</dssp:Name>
+          <dssp:ServiceName>this:SuricataSonarLeft</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/06/analogsensor.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>suricatadashboard:SonarRight</dssp:Name>
+          <dssp:ServiceName>this:SuricataSonarRight</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/06/analogsensor.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>suricatadashboard:IRCenter</dssp:Name>
+          <dssp:ServiceName>this:SuricataIRCenter</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/06/analogsensor.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>suricatadashboard:IRRight</dssp:Name>
+          <dssp:ServiceName>this:SuricataIRRight</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/06/analogsensor.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>suricatadashboard:IRLeft</dssp:Name>
+          <dssp:ServiceName>this:SuricataIRLeft</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:SuricataDashboard</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.microsoft.com/robotics/2011/08/kinect.user.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2011/08/kinect.user.html</dssp:Contract>
+          <dssp:Service>suricatakinect.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:Kinect</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.microsoft.com/2011/07/obstacleavoidancedrive.user.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/2011/07/obstacleavoidancedrive.user.html</dssp:Contract>
+          <dssp:Service>suricataobstacleavoidancedrive.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/05/drive.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name xmlns:q1="http://schemas.microsoft.com/2011/07/obstacleavoidancedrive.user.html">q1:Drive</dssp:Name>
+          <dssp:ServiceName>this:SuricataDrive</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2011/01/depthcamsensor.user.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name xmlns:q2="http://schemas.microsoft.com/2011/07/obstacleavoidancedrive.user.html">q2:DepthCamera</dssp:Name>
+          <dssp:ServiceName>this:Kinect</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2011/10/infraredsensorarray.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name xmlns:q3="http://schemas.microsoft.com/2011/07/obstacleavoidancedrive.user.html">q3:InfraredSensorArray</dssp:Name>
+          <dssp:ServiceName>this:SuricataIRArray</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2011/09/sonarsensorarray.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name xmlns:q4="http://schemas.microsoft.com/2011/07/obstacleavoidancedrive.user.html">q4:SonarSensorArray</dssp:Name>
+          <dssp:ServiceName>this:SuricataSonarArray</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/09/gamecontroller.user.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name xmlns:q5="http://schemas.microsoft.com/2011/07/obstacleavoidancedrive.user.html">q5:GameController</dssp:Name>
+          <dssp:ServiceName>this:FakeGameController</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:SuricataObstacleAvoidanceDrive</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/robotics/2013/04/gamecontroller.html</dssp:Contract>
+      <dssp:PartnerList />
+      <Name>this:FakeGameController</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/2013/04/skeletonfollower.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2011/08/kinect.user.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>skeletonfollower:KinectService</dssp:Name>
+          <dssp:ServiceName>this:Kinect</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/05/drive.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>skeletonfollower:DriveDifferentialTwoWheel</dssp:Name>
+          <dssp:ServiceName>this:SuricataObstacleAvoidanceDrive</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:SkeletonFollower</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/robotics/2013/04/suricatairarray.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/robotics/2013/04/suricatairarray.html</dssp:Contract>
+          <dssp:Service>suricatairarray.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/06/analogsensor.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>suricatairarray:FrontLeftIR</dssp:Name>
+          <dssp:ServiceName>this:SuricataIRLeft</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/06/analogsensor.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>suricatairarray:FrontMiddleIR</dssp:Name>
+          <dssp:ServiceName>this:SuricataIRCenter</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/06/analogsensor.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>suricatairarray:FrontRightIR</dssp:Name>
+          <dssp:ServiceName>this:SuricataIRRight</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:SuricataIRArray</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/robotics/2013/04/suricatasonararray.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/robotics/2013/04/suricatasonararray.html</dssp:Contract>
+          <dssp:Service>suricatasonararray.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/06/sonar.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>suricatasonararray:SonarLeft</dssp:Name>
+          <dssp:ServiceName>this:SuricataSonarLeft</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/06/sonar.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>suricatasonararray:SonarRight</dssp:Name>
+          <dssp:ServiceName>this:SuricataSonarRight</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:SuricataSonarArray</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.microsoft.com/robotics/2011/06/micarrayspeechrecognizergui.user.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2011/06/micarrayspeechrecognizer.user.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name xmlns:q6="http://schemas.microsoft.com/robotics/2011/06/micarrayspeechrecognizergui.user.html">q6:SpeechRecognizer</dssp:Name>
+          <dssp:ServiceName>this:UserKinectMicArraySpeechRecognizer</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:UserKinectMicArraySpeechRecognizerGui</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.microsoft.com/robotics/2011/06/micarrayspeechrecognizer.user.html</dssp:Contract>
+      <dssp:PartnerList />
+      <Name>this:UserKinectMicArraySpeechRecognizer</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/2013/04/soundfollower.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/04/soundfollower.html</dssp:Contract>
+          <dssp:Service>suricatasoundfollower.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/05/drive.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>soundfollower:DriveDifferentialTwoWheel</dssp:Name>
+          <dssp:ServiceName>this:SuricataObstacleAvoidanceDrive</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2011/08/kinect.user.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>soundfollower:Kinect</dssp:Name>
+          <dssp:ServiceName>this:Kinect</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:SoundFollower</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/2013/03/arduinogenericservo.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/03/arduinogenericservo.html</dssp:Contract>
+          <dssp:Service>suricatakinectservo.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinogenericservo:ArduinoService</dssp:Name>
+          <dssp:ServiceName>this:SuricataArduino</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:SuricataKinectServo</Name>
+    </ServiceRecordType>
+  </CreateServiceList>
+</Manifest>

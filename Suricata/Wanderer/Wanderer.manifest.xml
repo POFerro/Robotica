@@ -1,0 +1,226 @@
+<?xml version="1.0"?>
+<!--This file was created with the Microsoft Visual Programming Language.-->
+<Manifest xmlns:arduinogenericinfraredreceiver="http://schemas.pferro/2013/04/arduinogenericinfraredreceiver.html" 
+		  xmlns:arduino="http://mrdsarduino.codeplex.com/2012/01/arduino.html" 
+		  xmlns:arduinogenericdrive="http://schemas.pferro/2013/03/arduinogenericdrive.html" 
+		  xmlns:this="urn:uuid:756dd7ae-d73a-41f4-a844-9a9c6fb8d400" 
+		  xmlns:dssp="http://schemas.microsoft.com/xw/2004/10/dssp.html" 
+		  xmlns:arduinogenericservo="http://schemas.pferro/2013/03/arduinogenericservo.html" 
+		  xmlns:wanderer="http://schemas.pferro/2013/02/wanderer.html" 
+		  xmlns:arduinogenericdistancesensor="http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html"
+		  xmlns:arduinosonarturret="http://schemas.pferro/2013/03/arduinosonarturret.html"
+		  xmlns:wandererdashboard="http://schemas.pferro/2013/03/wandererdashboard.html"
+		  xmlns="http://schemas.microsoft.com/xw/2004/10/manifest.html">
+  <CreateServiceList>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/2013/02/wanderer.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/05/drive.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>wanderer:DriveDifferentialTwoWheel</dssp:Name>
+          <dssp:ServiceName>this:WandererDrive</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/06/analogsensor.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>wanderer:Sonar</dssp:Name>
+          <dssp:ServiceName>this:WandererSonar</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/06/analogsensor.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>wanderer:IRRight</dssp:Name>
+          <dssp:ServiceName>this:WandererIRRight</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/06/analogsensor.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>wanderer:IRLeft</dssp:Name>
+          <dssp:ServiceName>this:WandererIRLeft</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/03/arduinosonarturret.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>wanderer:SonarTurret</dssp:Name>
+          <dssp:ServiceName>this:WandererSonarTurret</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/04/arduinogenericinfraredreceiver.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>wanderer:IRReceiver</dssp:Name>
+          <dssp:ServiceName>this:WandererInfraredReceiver</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:wanderer</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/2013/03/arduinogenericdrive.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/03/arduinogenericdrive.html</dssp:Contract>
+          <dssp:Service>wandererdrive.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinogenericdrive:ArduinoService</dssp:Name>
+          <dssp:ServiceName>this:WandererArduino</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:WandererDrive</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/2013/03/arduinosonarturret.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/03/arduinosonarturret.html</dssp:Contract>
+          <dssp:Service>wanderersonarturret.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2006/06/sonar.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinosonarturret:GenericSonar</dssp:Name>
+          <dssp:ServiceName>this:WandererSonar</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/03/arduinogenericservo.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinosonarturret:ArduinoGenericServo</dssp:Name>
+          <dssp:ServiceName>this:WandererServo</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:WandererSonarTurret</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/2013/03/arduinogenericservo.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/03/arduinogenericservo.html</dssp:Contract>
+          <dssp:Service>wandererservo.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinogenericservo:ArduinoService</dssp:Name>
+          <dssp:ServiceName>this:WandererArduino</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:WandererServo</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:Service>wandererarduino.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:WandererArduino</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/2013/03/wandererdashboard.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/02/wanderer.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>wandererdashboard:Wanderer</dssp:Name>
+          <dssp:ServiceName>this:wanderer</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>wandererdashboard:ArduinoService</dssp:Name>
+          <dssp:ServiceName>this:WandererArduino</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/03/arduinosonarturret.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>wandererdashboard:Sonar</dssp:Name>
+          <dssp:ServiceName>this:WandererSonarTurret</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:WandererDashboard</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html</dssp:Contract>
+          <dssp:Service>wandererirright.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinogenericdistancesensor:ArduinoService</dssp:Name>
+          <dssp:ServiceName>this:WandererArduino</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:WandererIRRight</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html</dssp:Contract>
+          <dssp:Service>wandererirleft.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinogenericdistancesensor:ArduinoService</dssp:Name>
+          <dssp:ServiceName>this:WandererArduino</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:WandererIRLeft</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html</dssp:Contract>
+          <dssp:Service>wanderersonar.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinogenericdistancesensor:ArduinoService</dssp:Name>
+          <dssp:ServiceName>this:WandererArduino</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:WandererSonar</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/2013/04/arduinogenericinfraredreceiver.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/04/arduinogenericinfraredreceiver.html</dssp:Contract>
+          <dssp:Service>wandererinfraredreceiver.config.xml</dssp:Service>
+          <dssp:PartnerList />
+          <dssp:Name>dssp:StateService</dssp:Name>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinogenericinfraredreceiver:ArduinoService</dssp:Name>
+          <dssp:ServiceName>this:WandererArduino</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:WandererInfraredReceiver</Name>
+    </ServiceRecordType>
+  </CreateServiceList>
+</Manifest>

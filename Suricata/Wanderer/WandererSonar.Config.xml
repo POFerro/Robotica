@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArduinoGenericDistanceSensorState xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://mrdsarduino.codeplex.com/2012/01/arduinogenericdistancesensor.html">
+	<SensorModel>Sonar_HC_SR</SensorModel>
+	<TriggerPin>D10</TriggerPin>
+	<HardwareIdentifier>8</HardwareIdentifier>
+</ArduinoGenericDistanceSensorState>

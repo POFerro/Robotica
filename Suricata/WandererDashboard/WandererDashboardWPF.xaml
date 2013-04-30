@@ -1,0 +1,246 @@
+﻿<Window x:Class="POFerro.Robotics.WandererDashboard.WandererDashboardWPF"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:my="clr-namespace:POFerro.Robotics.WandererDashboard;assembly="
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="600"
+        WindowState="Maximized">
+    <Window.Resources>
+        <my:IRDistanceToBrushConverter x:Key="irDistanceBrushConverter" />
+    </Window.Resources>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="28" />
+            <RowDefinition Height="28" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ListBox Name="lstRadar" Margin="10,0" Grid.Row="0" Background="Black" ItemsSource="{Binding RadarLines}">
+            <ListBox.Resources>
+                <my:AlphaDistanceToStrokeConverter x:Key="strokeConverter" />
+                <my:AngleDistanceToX2Converter x:Key="X2Converter" />
+                <my:AngleDistanceToY2Converter x:Key="Y2Converter" />
+                <my:DivideBy2Converter x:Key="HalfConverter" />
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Canvas>
+                                    <Line X1="0" Y1="0" StrokeThickness="3">
+                                        <Line.X2>
+                                            <MultiBinding Converter="{StaticResource X2Converter}">
+                                                <Binding Path="Angle" />
+                                                <Binding Path="Distance" />
+                                            </MultiBinding>
+                                        </Line.X2>
+                                        <Line.Y2>
+                                            <MultiBinding Converter="{StaticResource Y2Converter}">
+                                                <Binding Path="Angle" />
+                                                <Binding Path="Distance" />
+                                            </MultiBinding>
+                                        </Line.Y2>
+                                        <Line.Stroke>
+                                            <MultiBinding Converter="{StaticResource strokeConverter}">
+                                                <Binding Path="Alpha" />
+                                                <Binding Path="Distance" />
+                                            </MultiBinding>
+                                        </Line.Stroke>
+                                    </Line>
+                                    <Ellipse Width="5" Height="5" StrokeThickness="1" Fill="White" Stroke="White">
+                                        <Canvas.Left>
+                                            <MultiBinding Converter="{StaticResource X2Converter}" ConverterParameter="5">
+                                                <Binding Path="Angle" />
+                                                <Binding Path="Distance" />
+                                            </MultiBinding>
+                                        </Canvas.Left>
+                                        <Canvas.Top>
+                                            <MultiBinding Converter="{StaticResource Y2Converter}" ConverterParameter="5">
+                                                <Binding Path="Angle" />
+                                                <Binding Path="Distance" />
+                                            </MultiBinding>
+                                        </Canvas.Top>
+                                    </Ellipse>
+                                </Canvas>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsBestAngle}" Value="True">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Canvas>
+                                            <Line X1="0" Y1="0" StrokeThickness="3">
+                                                <Line.X2>
+                                                    <MultiBinding Converter="{StaticResource X2Converter}">
+                                                        <Binding Path="Angle" />
+                                                        <Binding Path="Distance" />
+                                                    </MultiBinding>
+                                                </Line.X2>
+                                                <Line.Y2>
+                                                    <MultiBinding Converter="{StaticResource Y2Converter}">
+                                                        <Binding Path="Angle" />
+                                                        <Binding Path="Distance" />
+                                                    </MultiBinding>
+                                                </Line.Y2>
+                                                <Line.Stroke>
+                                                    <MultiBinding Converter="{StaticResource strokeConverter}">
+                                                        <Binding Path="Alpha" />
+                                                        <Binding Path="Distance" />
+                                                    </MultiBinding>
+                                                </Line.Stroke>
+                                            </Line>
+                                            <Ellipse Width="5" Height="5" StrokeThickness="1" Fill="White" Stroke="White">
+                                                <Canvas.Left>
+                                                    <MultiBinding Converter="{StaticResource X2Converter}" ConverterParameter="5">
+                                                        <Binding Path="Angle" />
+                                                        <Binding Path="Distance" />
+                                                    </MultiBinding>
+                                                </Canvas.Left>
+                                                <Canvas.Top>
+                                                    <MultiBinding Converter="{StaticResource Y2Converter}" ConverterParameter="5">
+                                                        <Binding Path="Angle" />
+                                                        <Binding Path="Distance" />
+                                                    </MultiBinding>
+                                                </Canvas.Top>
+                                            </Ellipse>
+                                            <Line X1="0" Y1="0" StrokeThickness="5" StrokeEndLineCap="Triangle" Stroke="Green">
+                                                <Line.X2>
+                                                    <MultiBinding Converter="{StaticResource X2Converter}">
+                                                        <Binding Path="Angle" />
+                                                        <Binding Path="BestLineDistance" />
+                                                    </MultiBinding>
+                                                </Line.X2>
+                                                <Line.Y2>
+                                                    <MultiBinding Converter="{StaticResource Y2Converter}">
+                                                        <Binding Path="Angle" />
+                                                        <Binding Path="BestLineDistance" />
+                                                    </MultiBinding>
+                                                </Line.Y2>
+                                            </Line>
+                                        </Canvas>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.Resources>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas IsItemsHost="True" Name="radarCanvas">
+                        <Canvas.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="180"/>
+                                <TranslateTransform X="{Binding ActualWidth, ElementName=radarCanvas, Mode=OneWay, Converter={StaticResource HalfConverter}}" Y="{Binding ActualHeight, ElementName=radarCanvas, Mode=OneWay}"/>
+                            </TransformGroup>
+                        </Canvas.RenderTransform>
+                    </Canvas>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+        <Image Name="picDepthInfoOriginal" Margin="10,0" Grid.Row="1" Stretch="Fill" />
+        <Image Name="picDepthInfo" Margin="10,0" Grid.Row="2" Stretch="Fill" />
+        <ListBox Name="lstPins" Margin="10,0" Grid.Row="3" ItemsSource="{Binding PinsList}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="10,5">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Pin}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Mode}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <ContentControl>
+                                <ContentControl.Style>
+                                    <Style TargetType="ContentControl">
+                                        <Style.Setters>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate>
+                                                        <TextBlock Text="{Binding Value}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style.Setters>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Mode}" Value="Input">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate>
+                                                            <Ellipse Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                <Ellipse.Style>
+                                                                    <Style TargetType="Ellipse">
+                                                                        <Setter Property="Fill" Value="Gray" />
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding Value}" Value="1">
+                                                                                <Setter Property="Fill" Value="Green" />
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding Value}" Value="0">
+                                                                                <Setter Property="Fill" Value="Red" />
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </Ellipse.Style>
+                                                            </Ellipse>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Mode}" Value="Output">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate>
+                                                            <Ellipse Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                <Ellipse.Style>
+                                                                    <Style TargetType="Ellipse">
+                                                                        <Setter Property="Fill" Value="Red" />
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding Value}" Value="1">
+                                                                                <Setter Property="Fill" Value="Green" />
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </Ellipse.Style>
+                                                            </Ellipse>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ContentControl.Style>
+                            </ContentControl>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"></StackPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+        <StackPanel Orientation="Horizontal" Margin="10,0" Grid.Row="4">
+            <Label Content="Distancia URF: " VerticalAlignment="Center" />
+            <TextBlock Name="txtDistanceFront" Text="{Binding State.LastSonarReading.NormalizedMeasurement}" Foreground="{Binding State.LastSonarReading.NormalizedMeasurement, Converter={StaticResource irDistanceBrushConverter}}" Width="50" FontWeight="Bold" VerticalAlignment="Center" />
+            <Label Content="Distancia IR: " VerticalAlignment="Center" />
+            <TextBlock Name="txtLeftIRDistance" Text="{Binding State.LastLeftIRReading.NormalizedMeasurement}" Foreground="{Binding State.LastLeftIRReading.NormalizedMeasurement, Converter={StaticResource irDistanceBrushConverter}}" Width="50" FontWeight="Bold" VerticalAlignment="Center" />
+            <TextBlock Name="txtRightIRDistance" Text="{Binding State.LastRightIRReading.NormalizedMeasurement}" Foreground="{Binding State.LastRightIRReading.NormalizedMeasurement, Converter={StaticResource irDistanceBrushConverter}}" Width="50" FontWeight="Bold" VerticalAlignment="Center" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="10,0" Grid.Row="5">
+            <Label Content="Estado: " VerticalAlignment="Center"/>
+            <TextBlock Name="txtCurrentState" Text="{Binding State.CurrentState}" Width="150" FontWeight="Bold" VerticalAlignment="Center" />
+            <Label Content="Left Engine: " VerticalAlignment="Center" />
+            <TextBlock Name="txtLeftSpeed" Text="{Binding State.LeftWheelPower}" Width="50" FontWeight="Bold" VerticalAlignment="Center" />
+            <Label Content="Right Speed: " VerticalAlignment="Center" />
+            <TextBlock Name="txtRightSpeed" Text="{Binding State.RightWheelPower}" Width="50" FontWeight="Bold" VerticalAlignment="Center" />
+            <Label Content="Angle: " VerticalAlignment="Center" />
+            <TextBlock Name="txtAngle" Text="{Binding State.BestAngle}" Width="50" FontWeight="Bold" VerticalAlignment="Center" />
+        </StackPanel>
+    </Grid>
+</Window>

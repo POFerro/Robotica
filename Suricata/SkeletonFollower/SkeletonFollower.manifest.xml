@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--This file was created with the Microsoft Visual Programming Language.-->
+<Manifest xmlns:skeletonfollower="http://schemas.pferro/2013/04/skeletonfollower.html" xmlns:user="http://schemas.microsoft.com/robotics/2011/08/kinect.user.html" xmlns:dssp="http://schemas.microsoft.com/xw/2004/10/dssp.html" xmlns:this="urn:uuid:ac01460b-a7d8-4554-ba64-2939de032d56" xmlns="http://schemas.microsoft.com/xw/2004/10/manifest.html">
+  <CreateServiceList>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/2013/04/skeletonfollower.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2011/08/kinect.user.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>skeletonfollower:KinectService</dssp:Name>
+          <dssp:ServiceName>this:UserKinect</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:skeletonfollower</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.microsoft.com/robotics/2011/08/kinect.user.html</dssp:Contract>
+      <dssp:PartnerList />
+      <Name>this:UserKinect</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.microsoft.com/2008/08/kinectui.user.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.microsoft.com/robotics/2011/08/kinect.user.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name xmlns:q1="http://schemas.microsoft.com/2008/08/kinectui.user.html">q1:Kinect</dssp:Name>
+          <dssp:ServiceName>this:UserKinect</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:UserWPFUIKinect</Name>
+    </ServiceRecordType>
+  </CreateServiceList>
+</Manifest>

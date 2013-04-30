@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--This file was created with the Microsoft Visual Programming Language.-->
+<Manifest xmlns:arduinogenericsonar="http://schemas.pferro/2013/03/arduinogenericsonar.html" xmlns:arduino="http://mrdsarduino.codeplex.com/2012/01/arduino.html" xmlns:this="urn:uuid:27e542ee-e06e-4140-85ff-8619278ed8b5" xmlns:dssp="http://schemas.microsoft.com/xw/2004/10/dssp.html" xmlns:arduinogenericservo="http://schemas.pferro/2013/03/arduinogenericservo.html" xmlns:arduinosonarturret="http://schemas.pferro/2013/03/arduinosonarturret.html" xmlns="http://schemas.microsoft.com/xw/2004/10/manifest.html">
+  <CreateServiceList>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/2013/03/arduinosonarturret.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/03/arduinogenericsonar.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinosonarturret:ArduinoGenericSonar</dssp:Name>
+          <dssp:ServiceName>this:ArduinoGenericSonar</dssp:ServiceName>
+        </dssp:Partner>
+        <dssp:Partner>
+          <dssp:Contract>http://schemas.pferro/2013/03/arduinogenericservo.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinosonarturret:ArduinoGenericServo</dssp:Name>
+          <dssp:ServiceName>this:ArduinoGenericServo</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:arduinosonarturret</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/2013/03/arduinogenericsonar.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinogenericsonar:ArduinoService</dssp:Name>
+          <dssp:ServiceName>this:ArduinoService</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:ArduinoGenericSonar</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://schemas.pferro/2013/03/arduinogenericservo.html</dssp:Contract>
+      <dssp:PartnerList>
+        <dssp:Partner>
+          <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+          <dssp:PartnerList />
+          <dssp:Name>arduinogenericservo:ArduinoService</dssp:Name>
+          <dssp:ServiceName>this:ArduinoService</dssp:ServiceName>
+        </dssp:Partner>
+      </dssp:PartnerList>
+      <Name>this:ArduinoGenericServo</Name>
+    </ServiceRecordType>
+    <ServiceRecordType>
+      <dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+		<dssp:PartnerList>
+			<dssp:Partner>
+				<dssp:Contract>http://mrdsarduino.codeplex.com/2012/01/arduino.html</dssp:Contract>
+				<dssp:Service>arduinoservice.config.xml</dssp:Service>
+				<dssp:PartnerList />
+				<dssp:Name>dssp:StateService</dssp:Name>
+			</dssp:Partner>
+		</dssp:PartnerList>
+		<Name>this:ArduinoService</Name>
+    </ServiceRecordType>
+  </CreateServiceList>
+</Manifest>

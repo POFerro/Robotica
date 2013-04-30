@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArduinoGenericServoState xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.pferro/2013/03/arduinogenericservo.html">
+	<HardwareIdentifier>9</HardwareIdentifier>
+	<MinPulse>640</MinPulse>
+	<MaxPulse>2400</MaxPulse>
+	<StartAngle>90</StartAngle>
+</ArduinoGenericServoState>

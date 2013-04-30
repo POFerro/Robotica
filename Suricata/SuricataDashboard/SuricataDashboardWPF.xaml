@@ -1,0 +1,273 @@
+﻿<Window x:Class="POFerro.Robotics.SuricataDashboard.SuricataDashboardWPF"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:my="clr-namespace:POFerro.Robotics.SuricataDashboard;assembly="
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="1200"
+        WindowState="Maximized">
+    <Window.Resources>
+        <my:IRDistanceToBrushConverter x:Key="irDistanceBrushConverter" />
+        <my:IRLateralDistanceToBrushConverter x:Key="irLateralDistanceBrushConverter" />
+        <my:SonarLateralDistanceToBrushConverter x:Key="sonarLateralDistanceBrushConverter" />
+    </Window.Resources>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="28" />
+            <RowDefinition Height="28" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Name="kinectDashboard">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical" Grid.RowSpan="2">
+                <GroupBox Header="Query Kinect for:" Name="groupBox2">
+                    <StackPanel Orientation="Vertical">
+                        <CheckBox Name="VideoCB" Content="Video" Height="18" Margin="20,10,20,5" Width="123" Checked="VideoCB_Checked" Unchecked="VideoCB_Checked"/>
+                        <CheckBox Name="DepthCB" Content="Depth" Height="18" Margin="20,5,20,5" Width="123" Checked="DepthCB_Checked" Unchecked="DepthCB_Checked" />
+                        <CheckBox Name="SkeletalCB" Content="Skeletal" Height="18" Margin="20,5,20,10" Width="123" Checked="SkeletalCB_Checked" Unchecked="SkeletalCB_Checked" />
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Skeletal Smoothing" Name="groupBox1">
+                    <StackPanel Orientation="Vertical">
+                        <CheckBox Name="TransformSmooth" Content="Transform Smooth" Height="18" Margin="4,7,0,0" Width="123" Checked="TransformSmoothChecked" Unchecked="TransformSmoothChecked" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Text="Smoothing:" Width="85"></TextBlock>
+                            <TextBox Name="Smoothing" Height="23" Width="46" LostFocus="FieldUpdated" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Text="Correction:" Width="85" />
+                            <TextBox Name="Correction" Height="23" Width="46" LostFocus="FieldUpdated"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Text="Prediction:" Width="85" />
+                            <TextBox Name="Prediction" Height="23" Width="46" LostFocus="FieldUpdated"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Text="Jitter Radius:" Width="85" />
+                            <TextBox Name="JitterRadius" Height="23" Width="46" LostFocus="FieldUpdated"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Text="Max Deviation:" Width="85" />
+                            <TextBox Name="MaxDeviationRadius" Height="23" Width="46" LostFocus="FieldUpdated"/>
+                        </StackPanel>
+                    </StackPanel>
+                </GroupBox>
+                <GroupBox Header="Additional Skeleton Info" Height="61" Name="groupBox4">
+                    <TextBlock Name="SkeletonQualityText" Text="" TextWrapping="Wrap" />
+                </GroupBox>
+
+                <TextBlock FontSize="18">
+                    <TextBlock Text="Effective FPS: " />
+                    <TextBlock Name="FPS" Text="0"></TextBlock>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image Name="RgbImage" Width="480" Height="320" Margin="0,3,0,0" />
+                    <Canvas Name="SkeletonCanvas" Width="480" Height="320" Margin="0,3,0,0" />
+                </Grid>
+                <Image HorizontalAlignment="Center" VerticalAlignment="Center" Name="DepthImage" Width="480" Height="320" Margin="0,3,0,0" Grid.Column="1" />
+            </StackPanel>
+            <Grid Grid.Column="1" Grid.Row="1" Height="121" HorizontalAlignment="Center" Margin="0,6,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="126" />
+                    <ColumnDefinition Width="162" />
+                    <ColumnDefinition Width="121" />
+                    <ColumnDefinition Width="71*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="29" />
+                    <RowDefinition Height="29" />
+                    <RowDefinition Height="29" />
+                    <RowDefinition Height="29" />
+                    <RowDefinition Height="29" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock HorizontalAlignment="Left" Margin="0,7,0,28" Text="Tilt (degrees):" Width="95" Grid.RowSpan="2" />
+                <TextBox Name="TiltDegrees" Height="23" HorizontalAlignment="Left" Margin="123,4,0,0" VerticalAlignment="Top" Width="36" Grid.ColumnSpan="2" />
+                <Button Content="Update" Click="OnUpdateTilt" Height="25" HorizontalAlignment="Right" Margin="0,3,28,0" VerticalAlignment="Top" Width="56" Grid.Column="1" />
+                <TextBlock Height="21" HorizontalAlignment="Left" Margin="0,5,0,0" Text="Device ID:" VerticalAlignment="Top" Width="121" Grid.Row="3" />
+                <TextBlock Name="DeviceID" Height="23" HorizontalAlignment="Left" VerticalAlignment="Top" Width="107" Grid.Column="1" Grid.Row="3" Margin="0,3,0,0" />
+                <TextBlock Height="21" HorizontalAlignment="Left" Margin="0,6,0,0" Text="Polling Frame rate:" VerticalAlignment="Top" Width="121" Grid.Column="2" />
+                <TextBlock Name="FrameRate" Height="23" HorizontalAlignment="Left" Margin="0,5,0,0" VerticalAlignment="Top" Width="71" Grid.Column="3" />
+                <TextBlock Height="21" HorizontalAlignment="Left" Margin="0,5,0,0" Text="Video image Type:" VerticalAlignment="Top" Width="121" Grid.Row="1" />
+                <TextBlock Name="VideImageType" HorizontalAlignment="Left" Margin="0,6,0,0" Width="156" Grid.Column="1" Grid.Row="1" />
+                <TextBlock Height="21" HorizontalAlignment="Left" Margin="0,4,0,0" Text="Depth image Type:" VerticalAlignment="Top" Width="121" Grid.Row="2" />
+                <TextBlock Name="DepthImageType" HorizontalAlignment="Left" Margin="0,5,0,1" Width="156" Grid.Column="1" Grid.Row="2" />
+                <TextBlock Height="21" HorizontalAlignment="Left" Margin="0,5,0,0" Text="Depth Cam Alternate ?" VerticalAlignment="Top" Width="121" Grid.Column="2" Grid.Row="1" />
+                <TextBlock Name="DepthCamAlternate" HorizontalAlignment="Left" Margin="0,4,0,2" Width="71" Grid.Column="3" Grid.Row="1" />
+                <TextBlock Height="21" HorizontalAlignment="Left" Margin="0,4,0,0" Text="Web Cam Alternate ?" VerticalAlignment="Top" Width="121" Grid.Column="2" Grid.Row="2" />
+                <TextBlock Name="WebCamAlternate" HorizontalAlignment="Left" Margin="2,3,0,3" Width="69" Grid.Column="3" Grid.Row="2" />
+            </Grid>
+        </Grid>
+        
+        <ListBox Name="lstPins" Margin="10,0" Grid.Row="3" ItemsSource="{Binding PinsList}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border Margin="10,5">
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding Pin}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Mode}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            <ContentControl>
+                                <ContentControl.Style>
+                                    <Style TargetType="ContentControl">
+                                        <Style.Setters>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate>
+                                                        <TextBlock Text="{Binding Value}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style.Setters>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Mode}" Value="Input">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate>
+                                                            <Ellipse Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                <Ellipse.Style>
+                                                                    <Style TargetType="Ellipse">
+                                                                        <Setter Property="Fill" Value="Gray" />
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding Value}" Value="1">
+                                                                                <Setter Property="Fill" Value="Green" />
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding Value}" Value="0">
+                                                                                <Setter Property="Fill" Value="Red" />
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </Ellipse.Style>
+                                                            </Ellipse>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Mode}" Value="Output">
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate>
+                                                            <Ellipse Width="20" Height="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                                <Ellipse.Style>
+                                                                    <Style TargetType="Ellipse">
+                                                                        <Setter Property="Fill" Value="Red" />
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding Value}" Value="1">
+                                                                                <Setter Property="Fill" Value="Green" />
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </Ellipse.Style>
+                                                            </Ellipse>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ContentControl.Style>
+                            </ContentControl>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"></StackPanel>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+        <StackPanel Orientation="Horizontal" Margin="10,0" Grid.Row="4">
+            <Label Content="Estado Geral: " VerticalAlignment="Center"/>
+            <TextBlock Name="txtGlobalState" Text="{Binding State.CurrentState}" Width="250" FontWeight="Bold" VerticalAlignment="Center" Margin="10" FontSize="24" />
+            <Label Content="Distancia IR: " VerticalAlignment="Center" />
+            <TextBlock Name="txtLeftIRDistance" Text="{Binding LastLeftIRReading.NormalizedMeasurement}" Foreground="{Binding LastLeftIRReading.NormalizedMeasurement, Converter={StaticResource irDistanceBrushConverter}}" Margin="10" Width="50" FontWeight="Bold" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Name="txtCenterIRDistance" Text="{Binding LastCenterIRReading.NormalizedMeasurement}" Foreground="{Binding LastCenterIRReading.NormalizedMeasurement, Converter={StaticResource irLateralDistanceBrushConverter}}" Margin="10" Width="50" FontWeight="Bold" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Name="txtRightIRDistance" Text="{Binding LastRightIRReading.NormalizedMeasurement}" Foreground="{Binding LastRightIRReading.NormalizedMeasurement, Converter={StaticResource irLateralDistanceBrushConverter}}" Margin="10" Width="50" FontWeight="Bold" VerticalAlignment="Center" FontSize="24" />
+            <Label Content="Distancia URF: " VerticalAlignment="Center" />
+            <TextBlock Name="txtDistanceLeft" Text="{Binding LastLeftSonarReading.NormalizedMeasurement}" Foreground="{Binding LastLeftSonarReading.NormalizedMeasurement, Converter={StaticResource sonarLateralDistanceBrushConverter}}" Margin="10" Width="50" FontWeight="Bold" VerticalAlignment="Center" FontSize="24" />
+            <TextBlock Name="txtDistanceRight" Text="{Binding LastRightSonarReading.NormalizedMeasurement}" Foreground="{Binding LastRightSonarReading.NormalizedMeasurement, Converter={StaticResource sonarLateralDistanceBrushConverter}}" Margin="10" Width="50" FontWeight="Bold" VerticalAlignment="Center" FontSize="24" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="10,0" Grid.Row="5">
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="TextBlock.Foreground" Value="Black"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding FollowerState.Enabled}" Value="False">
+                            <Setter Property="TextBlock.Foreground" Value="Gray"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+            <Label Content="Estado: " VerticalAlignment="Center"/>
+            <TextBlock Name="txtCurrentState" Text="{Binding FollowerState.CurrentState}" Width="250" FontWeight="Bold" VerticalAlignment="Center" Margin="10" FontSize="24" />
+            <Label Content="Ação: " VerticalAlignment="Center"/>
+            <TextBlock Name="txtCurrentAction" Text="{Binding FollowerState.CurrentAction}" Width="250" FontWeight="Bold" VerticalAlignment="Center" Margin="10" FontSize="24" />
+            <Label Content="Mestre Nº: " VerticalAlignment="Center"/>
+            <TextBlock Name="txtPlayerNum" Text="{Binding FollowerState.CurrentFollowedPlayer}" Width="50" FontWeight="Bold" VerticalAlignment="Center" />
+            <Label Content="Distância: " VerticalAlignment="Center"/>
+            <TextBlock Name="txtDistanceToSkeleton" Text="{Binding FollowerState.FollowedSkeletonDepthPosition.Depth}" Width="50" FontWeight="Bold" VerticalAlignment="Center" Margin="10" FontSize="24" />
+            <Label Content="Left Engine: " VerticalAlignment="Center" />
+            <TextBlock Name="txtLeftSpeed" Text="{Binding FollowerState.LeftWheelPower}" Width="50" FontWeight="Bold" VerticalAlignment="Center" />
+            <Label Content="Right Speed: " VerticalAlignment="Center" />
+            <TextBlock Name="txtRightSpeed" Text="{Binding FollowerState.RightWheelPower}" Width="50" FontWeight="Bold" VerticalAlignment="Center" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="10,0" Grid.Row="6">
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="TextBlock.Foreground" Value="Black"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding FollowerState.Enabled}" Value="False">
+                            <Setter Property="TextBlock.Foreground" Value="Gray"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+            <Label Content="Posição SK: " VerticalAlignment="Center"/>
+            <TextBlock Name="txtSkeletonRawX" Text="{Binding FollowerState.SkeletonPosition.X}" Width="150" FontWeight="Bold" VerticalAlignment="Center" Margin="10" FontSize="24" />
+            <TextBlock Name="txtSkeletonRawY" Text="{Binding FollowerState.SkeletonPosition.Y}" Width="50" FontWeight="Bold" VerticalAlignment="Center" Margin="10" FontSize="18" />
+            <Label Content="Max X: " VerticalAlignment="Center"/>
+            <TextBlock Name="txtMaxX" Text="{Binding FollowerState.FollowedSkeletonMaxXPosition}" Width="50" FontWeight="Bold" VerticalAlignment="Center" Margin="10" FontSize="18" />
+            <Label Content="Posição Depth: " VerticalAlignment="Center"/>
+            <TextBlock Name="txtSkeletonX" Text="{Binding FollowerState.FollowedSkeletonDepthPosition.X}" Width="100" FontWeight="Bold" VerticalAlignment="Center" Margin="10" FontSize="24" />
+            <TextBlock Name="txtSkeletonY" Text="{Binding FollowerState.FollowedSkeletonDepthPosition.Y}" Width="50" FontWeight="Bold" VerticalAlignment="Center" Margin="10" FontSize="18" />
+            <Label Content="Limite Esquerdo: " VerticalAlignment="Center"/>
+            <TextBlock Name="txtLeftMaxX" Text="{Binding FollowerState.FollowedSkeletonLeftLimit}" Width="50" FontWeight="Bold" VerticalAlignment="Center" Margin="10" FontSize="18" />
+            <Label Content="Limite Direito: " VerticalAlignment="Center"/>
+            <TextBlock Name="txtRightMinX" Text="{Binding FollowerState.FollowedSkeletonRightLimit}" Width="50" FontWeight="Bold" VerticalAlignment="Center" Margin="10" FontSize="18" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="10,0" Grid.Row="7">
+            <StackPanel.Style>
+                <Style TargetType="StackPanel">
+                    <Setter Property="TextBlock.Foreground" Value="Black"></Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SoundFollowerState.Enabled}" Value="False">
+                            <Setter Property="TextBlock.Foreground" Value="Gray"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </StackPanel.Style>
+            <Label Content="Estado: " VerticalAlignment="Center"/>
+            <TextBlock Name="txtSoundFollowerState" Text="{Binding SoundFollowerState.CurrentState}" Width="250" FontWeight="Bold" VerticalAlignment="Center" Margin="10" FontSize="24" />
+            <Label Content="Ângulo: " VerticalAlignment="Center"/>
+            <TextBlock Name="txtSoundAngle" Text="{Binding SoundFollowerState.CurrentSoundAngle}" Width="50" FontWeight="Bold" VerticalAlignment="Center" Margin="10" FontSize="24" />
+            <Label Content="Confiança: " VerticalAlignment="Center"/>
+            <TextBlock Name="txtSoundConfidence" Text="{Binding SoundFollowerState.CurrentConfidenceLevel}" Width="50" FontWeight="Bold" VerticalAlignment="Center" Margin="10" FontSize="24" />
+        </StackPanel>
+    </Grid>
+</Window>
